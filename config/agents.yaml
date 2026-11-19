@@ -1,0 +1,28 @@
+# Per-agent model settings. Change models here, or from Discord ("switch notes to gpt-5-mini").
+# Chat changes are stored in the database and override this file.
+# provider: anthropic | openai | google | openrouter
+timezone: Asia/Kolkata
+quietHours: { start: "23:00", end: "07:00" }   # no reminders in this window
+
+schedules:
+  morningPlan: "0 8 * * *"
+  jobChecks: ["30 9 * * *", "30 18 * * *"]
+  eveningReview: "30 21 * * *"
+
+embedding: { model: gemini-embedding-001, dims: 768 }   # Google; used for note search + memory
+
+defaultFallback: { provider: openrouter, model: google/gemini-2.5-flash }
+
+agents:
+  orchestrator: { provider: anthropic, model: claude-haiku-5-5, enabled: true }
+  notes:        { provider: google,    model: gemini-2.5-flash, enabled: true }
+  jobs:         { provider: google,    model: gemini-2.5-flash, enabled: true }
+  tasks:        { provider: openai,    model: gpt-5-mini,       enabled: true }
+
+jobs:
+  searchModel: gemini-2.5-flash        # Gemini with Google Search grounding
+  adzunaCountries: [in, de, nl, fr, at, be, es, it, pl]
+  jsearchCountries: [kr, jp]           # JSearch free tier is ~200 calls/month: only used on the first daily run
+  maxScoredPerRun: 40                  # cap LLM scoring cost per run
+  minScore: 60                         # 0-100; listings below this are not sent
+  maxDescriptionChars: 2000            # description length sent for scoring (cost cap)

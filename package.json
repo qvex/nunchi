@@ -1,0 +1,41 @@
+{
+  "name": "personal-assistant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsx --test test/*.test.ts",
+    "dev": "tsx src/index.ts",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "db": "docker compose up -d db",
+    "ping-models": "tsx scripts/ping-models.ts"
+  },
+  "keywords": [],
+  "type": "module",
+  "private": "true",
+  "dependencies": {
+    "@google/genai": "^3.6.1",
+    "@langchain/anthropic": "^1.6.5",
+    "@langchain/core": "^1.4.2",
+    "@langchain/google-genai": "^2.3.6",
+    "@langchain/langgraph": "^1.7.5",
+    "@langchain/openai": "^1.8.4",
+    "discord.js": "^14.28.1",
+    "dotenv": "^18.0.10",
+    "langchain": "^1.6.7",
+    "node-cron": "^4.6.0",
+    "pdf-parse": "^2.4.5",
+    "pg": "^8.23.1",
+    "pgvector": "^0.3.1",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/node-cron": "^3.0.11",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
